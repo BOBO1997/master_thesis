@@ -102,8 +102,7 @@ def analyze_circuits_tensored(adj_lists, Fs, counts_dict_list, limit = 100):
             Es_m, Ds_m = [corr_itself], [stddev_itself * len(adj_list[m])]
             for j, _ in enumerate(adj_list[m]):
                 counts, poses = extract_sub_counts(counts_xz, counts_zx, j, n)
-                expval, stddev = mit.expectation_value(
-                    counts, qubits=poses, clbits=poses, meas_mitigator=None)
+                expval, stddev = mit.expectation_value(counts, qubits=poses, clbits=poses, meas_mitigator=None)
                 Es_m.append(expval)
                 Ds_m.append(stddev)
             sum_corr = corr_deg + sum(Es_m[1:])
@@ -116,8 +115,7 @@ def analyze_circuits_tensored(adj_lists, Fs, counts_dict_list, limit = 100):
         Es_R, Ds_R = [], []
         for i, _ in enumerate(remaining):
             counts, poses = extract_sub_counts(counts_xz, counts_zx, i, n)
-            expval, stddev = mit.expectation_value(
-                counts, qubits=poses, clbits=poses, meas_mitigator=None)
+            expval, stddev = mit.expectation_value(counts, qubits=poses, clbits=poses, meas_mitigator=None)
             Es_R.append(expval)
             Ds_R.append(stddev)
         corr_R = sum(Es_R)
@@ -126,8 +124,7 @@ def analyze_circuits_tensored(adj_lists, Fs, counts_dict_list, limit = 100):
         corr_F *= np.sqrt(2)
         corr_all = corr_F + corr_R
         corr_all_list.append(corr_all)
-        stddev_all_list.append(np.sqrt(
-            2 * sum([dev ** 2 for Ds_m in Ds_F for dev in Ds_m]) + sum([dev ** 2 for dev in Ds_R])))
+        stddev_all_list.append(np.sqrt(2 * sum([dev ** 2 for Ds_m in Ds_F for dev in Ds_m]) + sum([dev ** 2 for dev in Ds_R])))
         Es_all_list.append([Es_F, Es_R])
         Ds_all_list.append([Ds_F, Ds_R])
         print("total correlation:", corr_all, "\n")
