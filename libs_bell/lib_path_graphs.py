@@ -4,11 +4,9 @@ from qiskit import QuantumCircuit, QuantumRegister
 from qiskit import execute
 from qiskit.compiler import transpile
 import qiskit.ignis.mitigation as mit
-from qiskit.providers import backend
 
 
 ############# job casting ############
-
 
 def prepare_path_graph_qcs(qc,
                            backend,
