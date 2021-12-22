@@ -20,6 +20,7 @@ def prepare_path_graph_qcs(qc,
         initial_layouts_: 
     """
     n = qc.num_qubits
+    assert len(initial_layout) == n
     qcs, nums_meas_cal, initial_layouts_ = [], [], []
 
     if n <= 1:
