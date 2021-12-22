@@ -12,12 +12,11 @@ def compute_stddev_of_grouping(stddevs):
     return np.sqrt(sum([stddev ** 2 for stddev in stddevs]))
 
 
-def analyze_circuits_tensored(adj_lists, counts_dict_list, tensored_meas_mitigator_list=None, limit=100):
+def correlations_of_star_graphs(adj_lists, counts_dict_list):
     """
     Input
         adj_lists         : list of adjacency list
         counts_dict_list  : list of int list (list of counts)
-        tensored_meas_mitigator_list : measurement mitigator list
     Output
         expval_all_list : list of float (correlation of each graph)
         stddev_all_list : list of float (standard deviation of each graph)
@@ -28,8 +27,6 @@ def analyze_circuits_tensored(adj_lists, counts_dict_list, tensored_meas_mitigat
     for adj_list in adj_lists:
         t1 = time.time()
         n = len(adj_list)
-        if n > limit:
-            break
         print("graph size:", n)
         if n <= 1:
             print("skipped\n")
@@ -42,11 +39,7 @@ def analyze_circuits_tensored(adj_lists, counts_dict_list, tensored_meas_mitigat
         # for the first term
         print("first term")
         tt1 = time.time()
-        if tensored_meas_mitigator_list is not None:
-            # n = 2 -> 0, n = 10 -> 16
-            counts = tensored_meas_mitigator_list[n - 2].apply(counts_dict_list[2 * (n - 2)])
-        else:
-            counts = counts_dict_list[2 * (n - 2)]
+        counts = counts_dict_list[2 * (n - 2)]
         tt2 = time.time()
         print(tt2 - tt1, "s")
         expval1, stddev1 = mit.expectation_value(counts,
@@ -60,11 +53,7 @@ def analyze_circuits_tensored(adj_lists, counts_dict_list, tensored_meas_mitigat
         Es_2, Ds_2 = [], []
         sum_expval2, sum_stddev2 = 0, 0
         tt1 = time.time()
-        if tensored_meas_mitigator_list is not None:
-            # n = 2 -> 1, n = 10 -> 17
-            counts = tensored_meas_mitigator_list[n - 2].apply(counts_dict_list[2 * (n - 2) + 1])
-        else:
-            counts = counts_dict_list[2 * (n - 2) + 1]
+        counts = counts_dict_list[2 * (n - 2) + 1]
         tt2 = time.time()
         print(tt2 - tt1, "s")
         for pos in range(1, n):  # recover the two qubit expectation values
