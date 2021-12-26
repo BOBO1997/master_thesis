@@ -183,7 +183,8 @@ def CalcErrorCramérRao(M, shots_list, p0, number_grover_list):
     for k in range(M + 1):
         Nk = shots_list[k]
         mk = number_grover_list[k]
-        FisherInfo += Nk / (p0 * (1 - p0)) * (2 * mk + 1)**2
+        # FisherInfo += Nk / (p0 * (1 - p0)) * (2 * mk + 1) ** 2
+        FisherInfo += Nk / (p0 * (1 - p0)) * (2 * mk) ** 2 #######====== advice by Dr. Shumpei Uno ======#######
     return np.sqrt(1 / FisherInfo)
 
 # OK
@@ -201,7 +202,8 @@ def CalcNumberOracleCalls(M, shots_list, number_grover_list):
     for k in range(M + 1):
         Nk = shots_list[k]
         mk = number_grover_list[k]
-        Norac += Nk * (2 * mk + 1)
+        # Norac += Nk * (2 * mk + 1)
+        Norac += Nk * (2 * mk) # ====== modified 2021.12.27 ======#######
     return Norac
 
 # OK
@@ -209,7 +211,7 @@ def calculate_theta(hit_list, number_grover_list, shots_list):
     """
         calculate optimal theta values
             hit_list: list of count of obserbving "1" for qc_list
-            numebr_grover_list: list of number of Grover operators        
+            numebr_grover_list: list of number of Grover operators, corresponds to the variable "m"     
             shots_list: list of number of shots
 
         Return:
@@ -217,29 +219,42 @@ def calculate_theta(hit_list, number_grover_list, shots_list):
     """
 
     small = 1.e-15  # small valued parameter to avoid zero division
-    confidenceLevel = 5  # confidence level to determine the search range
+    # confidenceLevel = 5  # confidence level to determine the search range
+    confidenceLevel = 20 #######====== advice by Dr. Shumpei Uno ======#######
 
-    thetaCandidate_list = []
+    thetaCandidate_list = [] # to be returned
     rangeMin = 0.0 + small
-    rangeMax = 1.0 - small
+    # rangeMax = 1.0 - small
+    rangeMax = 0.5 - small #######====== advice by Dr. Shumpei Uno ======#######
     for igrover in range(len(number_grover_list)):
 
         def loglikelihood(p):  # search value
+            """
+            p: integral value
+            """
             ret = np.zeros_like(p)
             theta = np.arcsin(np.sqrt(p))  # search theta
-            for n in range(igrover + 1):
+            for n in range(igrover + 1): # sum up the differentials: log(L_k)
                 ihit = hit_list[n]  # empirical value
-                arg = (2 * number_grover_list[n] + 1) * theta  # search angle
-                ret = ret + 2 * ihit * np.log(np.abs(np.sin(arg))) + 2 * (
-                    shots_list[n] - ihit) * np.log(np.abs(np.cos(arg)))  # search log likelihood
+                # arg = (2 * number_grover_list[n] + 1) * theta  # search angle
+                arg = (2 * number_grover_list[n]) * theta  # search angle #######====== advice by Dr. Shumpei Uno ======#######
+                # ret += 2 * ihit * np.log(np.abs(np.sin(arg))) + 2 * (shots_list[n] - ihit) * np.log(np.abs(np.cos(arg)))  # search log likelihood
+                # ここがsin か cosかは、sin_raw_hit_list = [shots - h for h in raw_hit_list]を使うかどうかに依存
+                ret += 2 * ihit * np.log(np.abs(np.cos(arg))) \
+                    + 2 * (shots_list[n] - ihit) * np.log(np.abs(np.sin(arg)))  # correct label and wrong label # search log likelihood # modified 2021.12.27
             return -ret
 
         searchRange = (rangeMin, rangeMax)
-        searchResult = optimize.brute(loglikelihood, [searchRange])
+        print("searchRange", searchRange)
+        # searchResult = optimize.brute(loglikelihood, [searchRange])
+        searchResult = optimize.brute(loglikelihood, [searchRange], Ns=256) #######====== advice by Dr. Shumpei Uno ======#######
         pCandidate = searchResult[0]
+        print("pCandidate", pCandidate)
         thetaCandidate_list.append(np.arcsin(np.sqrt(pCandidate)))
-        perror = CalcErrorCramérRao(
-            igrover, shots_list, pCandidate, number_grover_list)
-        rangeMax = min(pCandidate+confidenceLevel*perror, 1.0 - small)
+        print("thetaCandidate", np.arcsin(np.sqrt(pCandidate)))
+        perror = CalcErrorCramérRao(igrover, shots_list, pCandidate, number_grover_list)
+        print("perror", perror)
+        rangeMax = min(pCandidate+confidenceLevel*perror, 0.5 - small)
         rangeMin = max(pCandidate-confidenceLevel*perror, 0.0 + small)
+        print()
     return thetaCandidate_list
