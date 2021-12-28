@@ -71,14 +71,17 @@ def arrange_results_list_tensored3(results_list):
         pos += 2
     return results_graph_states, results_meas_cal
 
-def job_ids_to_raw_hist_list_and_results_meas_cal(file_path, device):
+def job_ids_to_raw_hist_list_and_results_meas_cal(file_path, device, tensored3or4 = 4):
     with open(file_path, "rb") as f:
         job_ids = pickle.load(f)
     results_jobs_list = job_ids_to_result(job_ids, device)
     print("length of results_jobs_list: ", len(results_jobs_list))
     results_list = flatten_results_jobs_list(results_jobs_list)
     print("length of results_list: ", len(results_list))
-    results_graph_states, results_meas_cal = arrange_results_list_tensored4(results_list)
+    if tensored3or4 == 3:
+        results_graph_states, results_meas_cal = arrange_results_list_tensored3(results_list)
+    else:
+        results_graph_states, results_meas_cal = arrange_results_list_tensored4(results_list)
     print("length of results_meas_cal: ", len(results_meas_cal))
     raw_hist_list = results_list_to_hist_list(results_graph_states)
     print("length of raw_hist_list: ", len(raw_hist_list))
