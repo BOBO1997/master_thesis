@@ -1,3 +1,8 @@
+###################
+#### https://github.com/qiskit-community/qiskit-community-tutorials/blob/master/algorithms/SimpleIntegral_AEwoPE.ipynb
+###################
+
+import sys
 from typing import List
 import time
 import numpy as np
@@ -8,7 +13,7 @@ from qiskit import execute
 
 ### ============================================ pre-processing =========================================== ###
 
-# OK
+
 def P(qc, qx, nbit):
     """
         Generating uniform probability distribution
@@ -19,7 +24,7 @@ def P(qc, qx, nbit):
     """
     qc.h(qx)
 
-# OK
+
 def R(qc, qx, qx_measure, nbit, b_max):
     """
         Computing the integral function f()
@@ -33,9 +38,9 @@ def R(qc, qx, qx_measure, nbit, b_max):
     for i in range(nbit):
         qc.cu3(2**i * b_max / 2**nbit * 2, 0, 0, qx[i], qx_measure[0])
 
-# OK
+
 def Rinv(qc, qx, qx_measure, nbit, b_max):
-    """3
+    """
         The inverse of R
             qc: quantum circuit
             qx: quantum register
@@ -47,14 +52,13 @@ def Rinv(qc, qx, qx_measure, nbit, b_max):
         qc.cu3(-2**i * b_max / 2**nbit * 2, 0, 0, qx[i], qx_measure[0])
     qc.ry(-b_max / 2**nbit * 2 * 0.5, qx_measure)
 
-# OK
-def reflect(qc, qx, qx_measure, qx_ancilla, nbit, b_max, barrier=False):
+
+def reflect(qc, qx, qx_measure, nbit, barrier=False):
     """
         Computing reflection operator (I - 2|0><0|)
             qc: quantum circuit
             qx: quantum register
             qx_measure: quantum register for measurement
-            qx_ancilla: temporal quantum register for decomposing multi controlled NOT gate
             nbit: number of qubits
             b_max: upper limit of integral
     """
@@ -63,9 +67,8 @@ def reflect(qc, qx, qx_measure, qx_ancilla, nbit, b_max, barrier=False):
     qc.x(qx_measure[0])
     if barrier:
         qc.barrier()  # format the circuits visualization
-    # multi_control_NOT(qc, qx, qx_measure, qx_ancilla, nbit, b_max)
-    qc.h(qx_measure)
-    qc.mcx(qx, qx_measure)
+    qc.h(qx_measure[0])
+    qc.mcx(qx, qx_measure[0])
     qc.h(qx_measure)
     if barrier:
         qc.barrier()  # format the circuits visualization
@@ -74,15 +77,13 @@ def reflect(qc, qx, qx_measure, qx_ancilla, nbit, b_max, barrier=False):
         qc.x(qx[i])
 
 
-# OK
 # This is to implement Grover Operator
-def Q_grover(qc, qx, qx_measure, qx_ancilla, nbit, b_max, barrier=False):
+def Q_grover(qc, qx, qx_measure, nbit, b_max, barrier=False):
     """
         The Grover operator: R P (I - 2|0><0|) P^+ R^+ U_psi_0 
             qc: quantum circuit
             qx: quantum register
             qx_measure: quantum register for measurement
-            qx_ancilla: temporal quantum register for decomposing multi controlled NOT gate
             nbit: number of qubits
             b_max: upper limit of integral
     """
@@ -97,12 +98,11 @@ def Q_grover(qc, qx, qx_measure, qx_ancilla, nbit, b_max, barrier=False):
     P(qc, qx, nbit)
     if barrier:
         qc.barrier()  # format the circuits visualization
-    reflect(qc, qx, qx_measure, qx_ancilla, nbit, b_max, barrier)
+    reflect(qc, qx, qx_measure, nbit, barrier)
     if barrier:
         qc.barrier()  # format the circuits visualization
 
 
-# OK
 def create_grover_circuit(numebr_grover_list, nbit, b_max, barrier=False):
     """
         To generate quantum circuits running Grover operators with number of iterations in number_grover_list
@@ -118,17 +118,14 @@ def create_grover_circuit(numebr_grover_list, nbit, b_max, barrier=False):
         qx_measure = QuantumRegister(1)
         cr = ClassicalRegister(nbit + 1)  # modified grover
         qc = QuantumCircuit(qx, qx_measure, cr)
-        qx_ancilla = QuantumRegister(1)
         for ikAA in range(numebr_grover_list[igrover]):
-            Q_grover(qc, qx, qx_measure, qx_ancilla, nbit, b_max, barrier)
+            Q_grover(qc, qx, qx_measure, nbit, b_max, barrier)
         qc.measure(qx, cr[:-1])  # modified grover
         qc.measure(qx_measure, cr[-1])  # modified grover
         qc_list.append(qc)
     return qc_list
 
 
-
-# OK
 def run_grover(qc_list, number_grover_list, shots_list, backend, noise_model=None, seed_transpiler=None, seed_simulator=None):
     """
         Run the quantum circuits returned by create_grover_circuit()
@@ -140,34 +137,32 @@ def run_grover(qc_list, number_grover_list, shots_list, backend, noise_model=Non
         Return:
             hit_list: list of count of obserbving "1" for qc_list
     """
-    counts_list = []
+    hist_list = []
     for k in range(len(number_grover_list)):
-        t1 = time.time()
-        print(k, "th round with", number_grover_list[k], "oracles")
-        job = execute(qc_list[k], backend=backend, shots=shots_list[k], noise_model=noise_model, seed_transpiler=seed_transpiler, seed_simulator=seed_simulator)
+        sys.stdout.write("iter=(%d/%d)\r" % ((k + 1), len(number_grover_list)))
+        sys.stdout.flush()
+        job = execute(qc_list[k], backend=backend, shots=shots_list[k], noise_model=noise_model, 
+                      seed_transpiler=seed_transpiler, seed_simulator=seed_simulator)
         lapse = 0
         interval = 0.00001
         time.sleep(interval)
         while job.status().name != 'DONE':
             time.sleep(interval)
             lapse += 1
-        counts_list.append(job.result().get_counts(qc_list[k]))
-        t2 = time.time()
-        print(t2 - t1, "s")
-    return counts_list
+        hist_list.append(job.result().get_hist(qc_list[k]))
+    return hist_list
+
 
 ### ============================================ post-processing =========================================== ###
 
-# OK
-def make_hit_list(counts_list: List[dict]):
+def make_hit_list(hist_list: List[dict]):
     hit_list = []
-    strlen = len(list(counts_list[0].keys())[0])
-    for k in range(len(counts_list)):
-        hits = counts_list[k].get("0"*strlen, 0)
+    for k in range(len(hist_list)):
+        hits = hist_list[k].get("0" * len(list(hist_list[0].keys())[0]), 0)
         hit_list.append(hits)
     return hit_list
 
-# OK
+
 def CalcErrorCramérRao(M, shots_list, p0, number_grover_list):
     """
         calculate Cramér-Rao lower bound
@@ -183,11 +178,10 @@ def CalcErrorCramérRao(M, shots_list, p0, number_grover_list):
     for k in range(M + 1):
         Nk = shots_list[k]
         mk = number_grover_list[k]
-        # FisherInfo += Nk / (p0 * (1 - p0)) * (2 * mk + 1) ** 2
-        FisherInfo += Nk / (p0 * (1 - p0)) * (2 * mk) ** 2 #######====== advice by Dr. Shumpei Uno ======#######
+        FisherInfo += Nk / (p0 * (1 - p0)) * (2 * mk)**2
     return np.sqrt(1 / FisherInfo)
 
-# OK
+
 def CalcNumberOracleCalls(M, shots_list, number_grover_list):
     """
         calculate the total number of oracle calls
@@ -202,16 +196,15 @@ def CalcNumberOracleCalls(M, shots_list, number_grover_list):
     for k in range(M + 1):
         Nk = shots_list[k]
         mk = number_grover_list[k]
-        # Norac += Nk * (2 * mk + 1)
-        Norac += Nk * (2 * mk) # ====== modified 2021.12.27 ======#######
+        Norac += Nk * (2 * mk)
     return Norac
 
-# OK
+
 def calculate_theta(hit_list, number_grover_list, shots_list):
     """
         calculate optimal theta values
             hit_list: list of count of obserbving "1" for qc_list
-            numebr_grover_list: list of number of Grover operators, corresponds to the variable "m"     
+            numebr_grover_list: list of number of Grover operators        
             shots_list: list of number of shots
 
         Return:
@@ -219,42 +212,28 @@ def calculate_theta(hit_list, number_grover_list, shots_list):
     """
 
     small = 1.e-15  # small valued parameter to avoid zero division
-    # confidenceLevel = 5  # confidence level to determine the search range
-    confidenceLevel = 20 #######====== advice by Dr. Shumpei Uno ======#######
+    confidenceLevel = 5  # confidence level to determine the search range
 
-    thetaCandidate_list = [] # to be returned
+    thetaCandidate_list = []
     rangeMin = 0.0 + small
-    # rangeMax = 1.0 - small
-    rangeMax = 0.5 - small #######====== advice by Dr. Shumpei Uno ======#######
+    rangeMax = 0.5 - small
     for igrover in range(len(number_grover_list)):
 
-        def loglikelihood(p):  # search value
-            """
-            p: integral value
-            """
+        def loglikelihood(p):
             ret = np.zeros_like(p)
-            theta = np.arcsin(np.sqrt(p))  # search theta
-            for n in range(igrover + 1): # sum up the differentials: log(L_k)
-                ihit = hit_list[n]  # empirical value
-                # arg = (2 * number_grover_list[n] + 1) * theta  # search angle
-                arg = (2 * number_grover_list[n]) * theta  # search angle #######====== advice by Dr. Shumpei Uno ======#######
-                # ret += 2 * ihit * np.log(np.abs(np.sin(arg))) + 2 * (shots_list[n] - ihit) * np.log(np.abs(np.cos(arg)))  # search log likelihood
-                # ここがsin か cosかは、sin_raw_hit_list = [shots - h for h in raw_hit_list]を使うかどうかに依存
-                ret += 2 * ihit * np.log(np.abs(np.cos(arg))) \
-                    + 2 * (shots_list[n] - ihit) * np.log(np.abs(np.sin(arg)))  # correct label and wrong label # search log likelihood # modified 2021.12.27
+            theta = np.arcsin(np.sqrt(p))
+            for n in range(igrover + 1):
+                ihit = hit_list[n]
+                arg = (2 * number_grover_list[n]) * theta
+                ret = ret + 2 * ihit * np.log(np.abs(np.cos(arg))) \
+                          + 2 * (shots_list[n] - ihit) * np.log(np.abs(np.sin(arg)))
             return -ret
 
         searchRange = (rangeMin, rangeMax)
-        print("searchRange", searchRange)
-        # searchResult = optimize.brute(loglikelihood, [searchRange])
-        searchResult = optimize.brute(loglikelihood, [searchRange], Ns=256) #######====== advice by Dr. Shumpei Uno ======#######
+        searchResult = optimize.brute(loglikelihood, [searchRange], Ns=256)
         pCandidate = searchResult[0]
-        print("pCandidate", pCandidate)
         thetaCandidate_list.append(np.arcsin(np.sqrt(pCandidate)))
-        print("thetaCandidate", np.arcsin(np.sqrt(pCandidate)))
         perror = CalcErrorCramérRao(igrover, shots_list, pCandidate, number_grover_list)
-        print("perror", perror)
         rangeMax = min(pCandidate+confidenceLevel*perror, 0.5 - small)
         rangeMin = max(pCandidate-confidenceLevel*perror, 0.0 + small)
-        print()
     return thetaCandidate_list
