@@ -149,7 +149,7 @@ def run_grover(qc_list, number_grover_list, shots_list, backend, noise_model=Non
         while job.status().name != 'DONE':
             time.sleep(interval)
             lapse += 1
-        hist_list.append(job.result().get_hist(qc_list[k]))
+        hist_list.append(job.result().get_counts(qc_list[k]))
     return hist_list
 
 
