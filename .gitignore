@@ -108,9 +108,9 @@ venv.bak/
 # to save the memory of repository, here we don't trace the pkl files
 # command: find . -name '*.pkl' -print >> .gitignore
 ./test_libs_qrem/ghz_states/brooklyn/pkls/ignis_mitigator_info.pkl
-test_libs_qrem/modified_grover/n20_piover500/p001_q001/pkls/ignis_info_list_list.pkl
-test_libs_qrem/modified_grover/n20_piover500/p003_q003/pkls/ignis_info_list_list.pkl
-test_libs_qrem/modified_grover/n20_piover500/p005_q005/pkls/ignis_info_list_list.pkl
+./test_libs_qrem/modified_grover/n20_piover500/p001_q001/pkls/ignis_info_list_list.pkl
+./test_libs_qrem/modified_grover/n20_piover500/p003_q003/pkls/ignis_info_list_list.pkl
+./test_libs_qrem/modified_grover/n20_piover500/p005_q005/pkls/ignis_info_list_list.pkl
 
 # additional checkpoints./path_graphs/hanoi/.ipynb_checkpoints
 ./path_graphs/cairo/.ipynb_checkpoints
