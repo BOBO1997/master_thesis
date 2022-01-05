@@ -16,6 +16,7 @@ with open("pkls/results_meas_cal.pkl", "rb") as f:
 from libs_qrem import NationEtalFilter
 from qiskit.ignis.mitigation.measurement import TensoredMeasFitter
 
+"""
 max_size = 65
 max_length = 40
 nation_bicgstab_mitigator_list = []
@@ -26,17 +27,31 @@ for n in range(2, max_size + 1):
     if n % 10 == 0:
         print("size", n, "finished")
 print("length of nation_bicgstab_mitigator_list: ", len(nation_bicgstab_mitigator_list))
+"""
 
+# print(raw_hist_list[50 - 2 + 1])
+print(len(raw_hist_list[50 - 2 + 1]))
+
+"""
 for i in range(max_length):
     t1 = time.perf_counter()
     _ = nation_bicgstab_mitigator_list[i].apply(raw_hist_list[i + 1], method="bicgstab")
     t2 = time.perf_counter()
     print(i + 1, "th finished (", i + 2, "qubits,", t2 - t1, "s )")
-
+"""
 # print(raw_hist_list[50 + 1])
 # print(nation_bicgstab_mitigator_list[50].num_clbits())
 # nation_bicgstab_mitigator_list[50].apply(raw_hist_list[50 + 1], method="bicgstab")
 
+with open("raw_hist_50qubit", "w") as f:
+    for key, value in raw_hist_list[50 - 1].items():
+        f.write(key)
+        f.write(" ")
+        f.write(str(value))
+        f.write("\n")
+f.close()
+
+"""
 nation_bicgstab_mitigator_info = []
 for i in range(max_length):
     nation_bicgstab_mitigator_info.append({"exact_one_norm_of_inv_reduced_A": nation_bicgstab_mitigator_list[i].exact_one_norm_of_inv_reduced_A(),
@@ -57,3 +72,4 @@ for i in range(max_length):
 
 with open("./pkls/nation_bicgstab_mitigator_info.pkl", "wb") as f:
     pickle.dump(nation_bicgstab_mitigator_info, f)
+"""
