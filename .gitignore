@@ -154,3 +154,6 @@ test_libs_qrem/.ipynb_checkpoints
 star_graphs/hanoi/.ipynb_checkpoints
 star_graphs/cairo/.ipynb_checkpoints
 star_graphs/brooklyn/.ipynb_checkpoints
+
+libs_bell/__pycache__
+test_libs_qrem/modified_grover/__pycache__
