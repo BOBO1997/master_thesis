@@ -70,7 +70,7 @@ docs/_build/
 target/
 
 # Jupyter Notebook
-.ipynb_checkpoints
+.ipynb_checkpoints/*
 
 # pyenv
 .python-version
@@ -112,45 +112,45 @@ venv.bak/
 ./test_libs_qrem/modified_grover/n20_piover500/p003_q003/pkls/ignis_info_list_list.pkl
 ./test_libs_qrem/modified_grover/n20_piover500/p005_q005/pkls/ignis_info_list_list.pkl
 
-# additional checkpoints./path_graphs/hanoi/.ipynb_checkpoints
-./path_graphs/cairo/.ipynb_checkpoints
-./path_graphs/.ipynb_checkpoints
-./path_graphs/brooklyn/pkls/.ipynb_checkpoints
-./path_graphs/brooklyn/.ipynb_checkpoints
-./test_libs_qrem/ghz_states/others/.ipynb_checkpoints
-./test_libs_qrem/ghz_states/.ipynb_checkpoints
-./test_libs_qrem/ghz_states/brooklyn/pkls/others/.ipynb_checkpoints
-./test_libs_qrem/ghz_states/brooklyn/pkls/.ipynb_checkpoints
-./test_libs_qrem/ghz_states/brooklyn/.ipynb_checkpoints
-./test_libs_qrem/ghz_fidelity/.ipynb_checkpoints
-./test_libs_qrem/ghz_fidelity/brooklyn/pkls/.ipynb_checkpoints
-./test_libs_qrem/ghz_fidelity/brooklyn/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n10_piover500/p003_q003/pkls/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n10_piover500/p003_q003/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n10_piover500/p005_q005/pkls/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n10_piover500/p005_q005/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n10_piover500/p001_q001/pkls/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n10_piover500/p001_q001/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n10_piover500/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n10_piover100/p003_q003/pkls/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n10_piover100/p003_q003/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n10_piover100/p005_q005/pkls/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n10_piover100/p005_q005/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n10_piover100/p001_q001/pkls/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n10_piover100/p001_q001/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n10_piover100/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n20_piover500/p003_q003/pkls/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n20_piover500/p003_q003/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n20_piover500/p005_q005/pkls/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n20_piover500/p005_q005/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n20_piover500/p001_q001/pkls/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n20_piover500/p001_q001/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n20_piover500/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n20_piover100/p001_q001/.ipynb_checkpoints
-./test_libs_qrem/modified_grover/n20_piover100/.ipynb_checkpoints
-./test_libs_qrem/.ipynb_checkpoints
-./.ipynb_checkpoints
-./star_graphs/hanoi/.ipynb_checkpoints
-./star_graphs/cairo/.ipynb_checkpoints
-./star_graphs/brooklyn/.ipynb_checkpoints
+# additional checkpoints/*./path_graphs/hanoi/.ipynb_checkpoints/*
+./path_graphs/cairo/.ipynb_checkpoints/*
+./path_graphs/.ipynb_checkpoints/*
+./path_graphs/brooklyn/pkls/.ipynb_checkpoints/*
+./path_graphs/brooklyn/.ipynb_checkpoints/*
+./test_libs_qrem/ghz_states/others/.ipynb_checkpoints/*
+./test_libs_qrem/ghz_states/.ipynb_checkpoints/*
+./test_libs_qrem/ghz_states/brooklyn/pkls/others/.ipynb_checkpoints/*
+./test_libs_qrem/ghz_states/brooklyn/pkls/.ipynb_checkpoints/*
+./test_libs_qrem/ghz_states/brooklyn/.ipynb_checkpoints/*
+./test_libs_qrem/ghz_fidelity/.ipynb_checkpoints/*
+./test_libs_qrem/ghz_fidelity/brooklyn/pkls/.ipynb_checkpoints/*
+./test_libs_qrem/ghz_fidelity/brooklyn/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n10_piover500/p003_q003/pkls/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n10_piover500/p003_q003/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n10_piover500/p005_q005/pkls/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n10_piover500/p005_q005/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n10_piover500/p001_q001/pkls/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n10_piover500/p001_q001/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n10_piover500/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n10_piover100/p003_q003/pkls/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n10_piover100/p003_q003/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n10_piover100/p005_q005/pkls/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n10_piover100/p005_q005/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n10_piover100/p001_q001/pkls/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n10_piover100/p001_q001/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n10_piover100/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n20_piover500/p003_q003/pkls/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n20_piover500/p003_q003/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n20_piover500/p005_q005/pkls/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n20_piover500/p005_q005/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n20_piover500/p001_q001/pkls/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n20_piover500/p001_q001/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n20_piover500/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n20_piover100/p001_q001/.ipynb_checkpoints/*
+./test_libs_qrem/modified_grover/n20_piover100/.ipynb_checkpoints/*
+./test_libs_qrem/.ipynb_checkpoints/*
+./.ipynb_checkpoints/*
+./star_graphs/hanoi/.ipynb_checkpoints/*
+./star_graphs/cairo/.ipynb_checkpoints/*
+./star_graphs/brooklyn/.ipynb_checkpoints/*
