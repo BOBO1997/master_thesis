@@ -130,8 +130,10 @@ test_libs_qrem/ghz_expval/brooklyn/pkls/others/.ipynb_checkpoints
 test_libs_qrem/ghz_expval/brooklyn/pkls/.ipynb_checkpoints
 test_libs_qrem/ghz_expval/brooklyn/.ipynb_checkpoints
 test_libs_qrem/ghz_fidelity/.ipynb_checkpoints
-test_libs_qrem/ghz_fidelity/brooklyn/pkls/.ipynb_checkpoints
-test_libs_qrem/ghz_fidelity/brooklyn/.ipynb_checkpoints
+test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/.ipynb_checkpoints
+test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/.ipynb_checkpoints
+test_libs_qrem/ghz_fidelity/brooklyn/run_test/pkls/.ipynb_checkpoints
+test_libs_qrem/ghz_fidelity/brooklyn/run_test/.ipynb_checkpoints
 test_libs_qrem/modified_grover/n10_piover500/p003_q003/grover100_cal8192/pkls/.ipynb_checkpoints
 test_libs_qrem/modified_grover/n10_piover500/p003_q003/grover100_cal8192/.ipynb_checkpoints
 test_libs_qrem/modified_grover/n10_piover500/p003_q003/grover8192_cal8192/pkls/.ipynb_checkpoints
