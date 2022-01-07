@@ -107,7 +107,7 @@ venv.bak/
 
 # to save the memory of repository, here we don't trace the pkl files
 # command: find . -name '*.pkl' -print >> .gitignore
-test_libs_qrem/ghz_states/brooklyn/pkls/ignis_mitigator_info.pkl
+test_libs_qrem/ghz_expval/brooklyn/pkls/ignis_mitigator_info.pkl
 test_libs_qrem/modified_grover/n20_piover500/p001_q001/grover100_cal8192/pkls/ignis_info_list_list.pkl
 test_libs_qrem/modified_grover/n20_piover500/p003_q003/grover100_cal8192/pkls/ignis_info_list_list.pkl
 test_libs_qrem/modified_grover/n20_piover500/p005_q005/grover100_cal8192/pkls/ignis_info_list_list.pkl
@@ -124,11 +124,11 @@ path_graphs/cairo/.ipynb_checkpoints
 path_graphs/.ipynb_checkpoints
 path_graphs/brooklyn/pkls/.ipynb_checkpoints
 path_graphs/brooklyn/.ipynb_checkpoints
-test_libs_qrem/ghz_states/others/.ipynb_checkpoints
-test_libs_qrem/ghz_states/.ipynb_checkpoints
-test_libs_qrem/ghz_states/brooklyn/pkls/others/.ipynb_checkpoints
-test_libs_qrem/ghz_states/brooklyn/pkls/.ipynb_checkpoints
-test_libs_qrem/ghz_states/brooklyn/.ipynb_checkpoints
+test_libs_qrem/ghz_expval/others/.ipynb_checkpoints
+test_libs_qrem/ghz_expval/.ipynb_checkpoints
+test_libs_qrem/ghz_expval/brooklyn/pkls/others/.ipynb_checkpoints
+test_libs_qrem/ghz_expval/brooklyn/pkls/.ipynb_checkpoints
+test_libs_qrem/ghz_expval/brooklyn/.ipynb_checkpoints
 test_libs_qrem/ghz_fidelity/.ipynb_checkpoints
 test_libs_qrem/ghz_fidelity/brooklyn/pkls/.ipynb_checkpoints
 test_libs_qrem/ghz_fidelity/brooklyn/.ipynb_checkpoints
