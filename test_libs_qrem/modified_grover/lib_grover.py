@@ -142,7 +142,7 @@ def run_grover(qc_list, number_grover_list, shots_list, backend, noise_model=Non
         sys.stdout.write("iter=(%d/%d)\r" % ((k + 1), len(number_grover_list)))
         sys.stdout.flush()
         job = execute(qc_list[k], backend=backend, shots=shots_list[k], noise_model=noise_model, 
-                      seed_transpiler=seed_transpiler, seed_simulator=seed_simulator)
+                      seed_transpiler=seed_transpiler + 1000 * k, seed_simulator=seed_simulator + 1000 * k)
         lapse = 0
         interval = 0.00001
         time.sleep(interval)
