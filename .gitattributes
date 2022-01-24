@@ -17,3 +17,9 @@ test_libs_qrem/modified_grover/n20_piover500/p005_q005/pkls/ignis_hit_list_list.
 # test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/delta filter=lfs diff=lfs merge=lfs -text
 # test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/job_list_dict.pkl filter=lfs diff=lfs merge=lfs -text
 # test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/lnp filter=lfs diff=lfs merge=lfs -text
+test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/mthree_lu/info_list_26-qubit.pkl 
+test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/mthree_lu/info_list_27-qubit.pkl 
+test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/mthree_lu/info_list_28-qubit.pkl 
+test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/mthree_lu/info_list_29-qubit.pkl 
+test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/mthree_lu/info_list_30-qubit.pkl 
+test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/mthree_lu/info_list_31-qubit.pkl 
