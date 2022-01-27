@@ -199,7 +199,6 @@ test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/delta/info_list_35-qubit.pk
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/delta/info_list_38-qubit.pkl
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/delta/info_list_32-qubit.pkl
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/delta/info_list_34-qubit.pkl
-test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/delta/info_list_6-qubit.pkl
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/delta/info_list_39-qubit.pkl
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/delta/info_list_31-qubit.pkl
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/delta/info_list_37-qubit.pkl
