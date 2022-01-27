@@ -13,3 +13,6 @@ test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/mthree_lu/info_list_28-qubi
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/mthree_lu/info_list_29-qubit.pkl 
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/mthree_lu/info_list_30-qubit.pkl 
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/mthree_lu/info_list_31-qubit.pkl 
+
+test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/delta/info_list_31-qubit.pkl
+test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/delta/info_list_31-qubit.pkl

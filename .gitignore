@@ -218,11 +218,6 @@ test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/raw/info_list_39-qubit.pkl
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/raw/info_list_37-qubit.pkl
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/raw/info_list_29-qubit.pkl
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/raw/info_list_36-qubit.pkl
-test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/ignis/info_list_15-qubit.pkl
-test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/ignis/info_list_16-qubit.pkl
-test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/ignis/info_list_17-qubit.pkl
-test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/ignis/info_list_18-qubit.pkl
-test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/ignis/info_list_19-qubit.pkl
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/ignis/info_list_20-qubit.pkl
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/ignis/info_list_21-qubit.pkl
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/ignis/info_list_22-qubit.pkl
