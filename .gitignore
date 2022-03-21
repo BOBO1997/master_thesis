@@ -223,3 +223,6 @@ test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/ignis/info_list_21-qubit.pk
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/ignis/info_list_22-qubit.pkl
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/ignis/info_list_23-qubit.pkl
 test_libs_qrem/ghz_fidelity/brooklyn/run_8tries/pkls/ignis/info_list_24-qubit.pkl
+
+bell_ineq/path_graphs/washington/pkls
+bell_ineq/path_graphs/washington2/pkls
